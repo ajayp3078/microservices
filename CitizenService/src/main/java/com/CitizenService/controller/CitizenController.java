@@ -39,6 +39,11 @@ public class CitizenController {
 		return new ResponseEntity<>(newCitizen, HttpStatus.CREATED); 
 	}
 	
+	@GetMapping("/health-check")
+	public String healthCheck() {
+		return "OK";
+	}
+	
 	
 
 }
