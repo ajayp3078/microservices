@@ -18,33 +18,30 @@ import com.CitizenService.repository.CitizenRepository;
 @RestController
 @RequestMapping("/citizen")
 public class CitizenController {
-	
+
 	@Autowired
 	private CitizenRepository citizenRepository;
-	
+
 	@GetMapping("/test")
 	public String hello() {
 		return "Running";
 	}
-	
+
 	@GetMapping("/id/{id}")
-	public ResponseEntity<List<Citizen>> getCitizensByVaccinationCenterId(@PathVariable Integer id){
+	public ResponseEntity<List<Citizen>> getCitizensByVaccinationCenterId(@PathVariable Integer id) {
 		List<Citizen> listOfCitizen = citizenRepository.findByVaccinationCenterId(id);
-		return new ResponseEntity<>(listOfCitizen, HttpStatus.OK); 
+		return new ResponseEntity<>(listOfCitizen, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<Citizen> addCitizen(@RequestBody Citizen citizen){
+	public ResponseEntity<Citizen> addCitizen(@RequestBody Citizen citizen) {
 		Citizen newCitizen = citizenRepository.save(citizen);
-		return new ResponseEntity<>(newCitizen, HttpStatus.CREATED); 
+		return new ResponseEntity<>(newCitizen, HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping("/health-check")
 	public String healthCheck() {
 		return "OK";
 	}
-	
-	
-	
 
 }
